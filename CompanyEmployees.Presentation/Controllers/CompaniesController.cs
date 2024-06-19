@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using CompanyEmployees.ActionFilters;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ModelBinders;
@@ -16,6 +17,7 @@ namespace Presentation.Controllers
     [ApiVersion("1")]
     [Route("api/companies")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class CompaniesController : ControllerBase
     {
         private readonly IServiceManager _service;
@@ -25,8 +27,12 @@ namespace Presentation.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Gets the list of all companies
+        /// </summary>
+        /// <returns>The companies list</returns>
         [HttpGet(Name = "GetCompanies")]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         public async Task<IActionResult> GetCompanies()
         {
             var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
@@ -34,13 +40,26 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("{id:guid}", Name = "CompanyById")]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
+        [HttpCacheValidation(MustRevalidate = false)]
         public async Task<IActionResult> GetCompany(Guid id)
         {
             var company = await _service.CompanyService.GetCompanyAsync(id, trackChanges: false);
             return Ok(company);
         }
 
-        [HttpPost(Name = "CreateCompanies")]
+        /// <summary>
+        /// Creates a newly created company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns>A newly created company</returns>
+        /// <response code="201">Returns the newly created item</response> 
+        /// <response code="400">If the item is null</response> 
+        /// <response code="422">If the model is invalid</response>
+        [HttpPost(Name = "CreateCompany")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
         {

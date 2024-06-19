@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,13 +12,14 @@ using Repository;
 namespace CompanyEmployees.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240618173503_refreshMigration")]
+    partial class refreshMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -169,12 +171,6 @@ namespace CompanyEmployees.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -227,15 +223,15 @@ namespace CompanyEmployees.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a1f9b34b-db71-40e3-84e4-ad52efb21035",
-                            ConcurrencyStamp = "56af13da-8976-4b75-ace8-6048153f1360",
+                            Id = "7e152e19-63aa-435d-a656-a69b00cf67fa",
+                            ConcurrencyStamp = "dc3a361e-4897-4588-ab45-3a2eb72d1cb4",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "07b26b1f-6912-4ece-98ad-abbe71f61ef3",
-                            ConcurrencyStamp = "9992e348-371e-406f-a641-43611b022e23",
+                            Id = "7601fdc0-f0a5-4411-b774-cd2d879f70be",
+                            ConcurrencyStamp = "b4aa5f6b-4ed4-4b43-b3f5-764ef789d2d0",
                             Name = "Administrator",
                             NormalizedName = "ADMINSITRATOR"
                         });
