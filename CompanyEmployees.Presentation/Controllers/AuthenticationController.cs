@@ -49,7 +49,7 @@ namespace Presentation.Controllers
 
             var tokenDto = await _service.AuthenticationService.CreateToken(populateExp: true);
 
-            return Ok(tokenDto);    
+            return Ok(tokenDto);
         }
     }
 }
