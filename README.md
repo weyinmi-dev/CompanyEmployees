@@ -27,7 +27,7 @@ The **CompanyEmployees API** is a .NET Core web API that allows companies to man
 
 ### Prerequisites
 
-- .NET Core 3.1 SDK
+- .NET Core 6.0 SDK
 - SQL Server (or any other compatible database)
 - Visual Studio or any other code editor
 
