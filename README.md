@@ -18,7 +18,7 @@ The **CompanyEmployees API** is a .NET Core web API that allows companies to man
 
 ## Technologies Used
 
-- **.NET Core 3.1**
+- **.NET Core 6.0**
 - **Entity Framework Core**
 - **JWT Authentication**
 - **Swagger for API Documentation**
