@@ -1,6 +1,6 @@
 # CompanyEmployees API
 
-![.NET Core](https://img.shields.io/badge/.NET_Core-3.1-blue)
+![.NET Core](https://img.shields.io/badge/.NET_Core-6.0-blue)
 ![Entity Framework](https://img.shields.io/badge/Entity_Framework-Core-green)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![Swagger](https://img.shields.io/badge/Swagger-API_Documentation-brightgreen)
